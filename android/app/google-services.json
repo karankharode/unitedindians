@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "224514194617",
+    "firebase_url": "https://united-indians.firebaseio.com",
+    "project_id": "united-indians",
+    "storage_bucket": "united-indians.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:224514194617:android:3d2be608c6e7c985a1ef68",
+        "android_client_info": {
+          "package_name": "com.bt.unitedindians"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "224514194617-gq2fevlvdpsinvh3rolukosu9bu6eiqs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfJUVGvkbIusE0gDsLttjw__6IdIVktcQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "224514194617-gq2fevlvdpsinvh3rolukosu9bu6eiqs.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "224514194617-n0vmi10o3aa2rhcojld3pe3nmrr025kl.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bt.unitedindians"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
