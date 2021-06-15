@@ -23,47 +23,46 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> _getUserData() async {
-      try {
-        await databaseReference
-            .child("Users")
-            .child(FirebaseAuth.instance.currentUser.uid)
-            .child("Info")
-            .once()
-            .then((DataSnapshot dataSnapshot) {
-          currentUserData.clear();
-          setState(() {
-            currentUserData.add(new UserData(
-              dataSnapshot.value["address"],
-              dataSnapshot.value["dob"],
-              dataSnapshot.value["education"],
-              dataSnapshot.value["email"],
-              dataSnapshot.value["name"],
-              dataSnapshot.value["paid"],
-              dataSnapshot.value["reference"],
-              dataSnapshot.value["state"],
-              dataSnapshot.value["username"],
-              dataSnapshot.value["wnumber"],
-            ));
-          });
-        });
-      } catch (e) {
-        debugPrint(e);
+    try {
+      await databaseReference
+          .child("Users")
+          .child(FirebaseAuth.instance.currentUser.uid)
+          .child("Info")
+          .once()
+          .then((DataSnapshot dataSnapshot) {
+        currentUserData.clear();
         setState(() {
           currentUserData.add(new UserData(
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
+            dataSnapshot.value["address"],
+            dataSnapshot.value["dob"],
+            dataSnapshot.value["education"],
+            dataSnapshot.value["email"],
+            dataSnapshot.value["name"],
+            dataSnapshot.value["paid"],
+            dataSnapshot.value["reference"],
+            dataSnapshot.value["state"],
+            dataSnapshot.value["username"],
+            dataSnapshot.value["wnumber"],
           ));
         });
-      }
-    
+      });
+    } catch (e) {
+      debugPrint(e);
+      setState(() {
+        currentUserData.add(new UserData(
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+        ));
+      });
+    }
   }
 
   static List<Widget> bodyOptions = [
@@ -93,10 +92,11 @@ class _HomePageState extends State<HomePage> {
       pageIndex = index;
     });
   }
-   DateTime currentBackPressTime;
+
+  DateTime currentBackPressTime;
   Future<bool> onWillPop() {
     DateTime now = DateTime.now();
-    if (currentBackPressTime == null || 
+    if (currentBackPressTime == null ||
         now.difference(currentBackPressTime) > Duration(seconds: 2)) {
       currentBackPressTime = now;
       Fluttertoast.showToast(msg: "Do you really want to exit ?");
@@ -107,7 +107,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    double iconHeight = 45;
+    double iconHeight = 40;
     return Scaffold(
       backgroundColor: colorPrimary,
       bottomNavigationBar: Container(
@@ -118,7 +118,7 @@ class _HomePageState extends State<HomePage> {
         child: ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(29)),
           child: SizedBox(
-            height: 52,
+            height: 62,
             child: BottomNavigationBar(
               items: [
                 BottomNavigationBarItem(
@@ -142,7 +142,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   title: Text(
-                    "Psychology",
+                    "Tab",
                   ),
                 ),
                 BottomNavigationBarItem(
@@ -153,7 +153,7 @@ class _HomePageState extends State<HomePage> {
                       onPressed: null,
                     ),
                   ),
-                  title: Text("Forum"),
+                  title: Text("Tab"),
                 ),
                 BottomNavigationBarItem(
                   icon: SizedBox(
@@ -179,7 +179,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: WillPopScope(
         onWillPop: onWillPop,
-              child: Container(
+        child: Container(
           decoration: bodyBackgroundDecoration,
           child: Center(child: bodyOptions.elementAt(pageIndex)),
         ),

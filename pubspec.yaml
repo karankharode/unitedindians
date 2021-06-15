@@ -37,7 +37,7 @@ dependencies:
 
   #image slider
   carousel_slider: ^2.3.1
-  chewie: ^0.9.10
+  # chewie: ^0.9.10
   video_player: 
 
   #razorpay

@@ -24,7 +24,6 @@ class SimCardServices {
   // }
 }
 
-
 class _LoginPageState extends State<LoginPage> {
   final formKey = new GlobalKey<FormState>();
   String phoneNo, verificationId, smsCode;
@@ -78,7 +77,7 @@ class _LoginPageState extends State<LoginPage> {
   DateTime currentBackPressTime;
   Future<bool> onWillPop() {
     DateTime now = DateTime.now();
-    if (currentBackPressTime == null || 
+    if (currentBackPressTime == null ||
         now.difference(currentBackPressTime) > Duration(seconds: 2)) {
       currentBackPressTime = now;
       Fluttertoast.showToast(msg: "Do you really want to exit ?");
@@ -93,7 +92,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: WillPopScope(
         onWillPop: onWillPop,
-              child: Container(
+        child: Container(
           decoration: bodyBackgroundDecoration,
           child: ListView(
             padding: EdgeInsets.zero,
@@ -116,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Align(
                     alignment: Alignment.center,
                     child: Text(
-                      "UNITED INDIANS",
+                      "Breath Music",
                       style: TextStyle(
                           fontFamily: "vow",
                           fontSize: 35,
@@ -129,8 +128,7 @@ class _LoginPageState extends State<LoginPage> {
 
               // Login box
               Padding(
-                padding: const EdgeInsets.only(
-                    left: 24.0, right: 24, top: 8, bottom: 5),
+                padding: const EdgeInsets.only(left: 24.0, right: 24, top: 8, bottom: 5),
                 child: Container(
                   height: 3 * (height / 5) - 10,
                   decoration: BoxDecoration(
@@ -152,27 +150,24 @@ class _LoginPageState extends State<LoginPage> {
                           child: Text(
                             "LOGIN",
                             textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold,
-                                shadows: [
-                                  new Shadow(
-                                    offset: Offset(
-                                      1.5,
-                                      1.5,
-                                    ),
-                                    color: shadowBlack,
-                                    blurRadius: 6,
-                                  )
-                                ]),
+                            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, shadows: [
+                              new Shadow(
+                                offset: Offset(
+                                  1.5,
+                                  1.5,
+                                ),
+                                color: shadowBlack,
+                                blurRadius: 6,
+                              )
+                            ]),
                           ),
                         ),
                         Column(children: [
                           // Phone number
                           Visibility(
                             child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 28.0, right: 28, top: 0, bottom: 5),
+                              padding:
+                                  const EdgeInsets.only(left: 28.0, right: 28, top: 0, bottom: 5),
                               // child: TypeAheadFormField(
                               //   textFieldConfiguration: TextFieldConfiguration(
                               //       controller: this._typeAheadController,
@@ -203,8 +198,8 @@ class _LoginPageState extends State<LoginPage> {
                                 autocorrect: true,
                                 enableInteractiveSelection: true,
                                 decoration: InputDecoration(
-                              prefixIcon: Icon(Icons.phone),
-                              labelText: "+91  Phone Number",
+                                  prefixIcon: Icon(Icons.phone),
+                                  labelText: "+91  Phone Number",
                                   //validator
                                 ),
                                 onChanged: (value) {
@@ -220,8 +215,8 @@ class _LoginPageState extends State<LoginPage> {
                           Visibility(
                             visible: otpTextfieldVisibility,
                             child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 28.0, right: 28, top: 5, bottom: 0),
+                              padding:
+                                  const EdgeInsets.only(left: 28.0, right: 28, top: 5, bottom: 0),
                               child: TextFormField(
                                 validator: (value) {
                                   if (value.length != 6) {
@@ -249,12 +244,10 @@ class _LoginPageState extends State<LoginPage> {
                         Container(
                           alignment: Alignment.centerRight,
                           child: Padding(
-                            padding: const EdgeInsets.only(
-                                right: 15, left: 8, bottom: 25),
+                            padding: const EdgeInsets.only(right: 15, left: 8, bottom: 25),
                             child: Container(
                               decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(25)),
+                                  borderRadius: BorderRadius.all(Radius.circular(25)),
                                   boxShadow: [
                                     new BoxShadow(
                                         color: shadowBlack,
@@ -262,8 +255,8 @@ class _LoginPageState extends State<LoginPage> {
                                         spreadRadius: 1,
                                         offset: Offset(1, 1))
                                   ],
-                                  gradient: LinearGradient(
-                                      colors: [gradientColor1, gradientColor2])),
+                                  gradient:
+                                      LinearGradient(colors: [gradientColor1, gradientColor2])),
                               child: FlatButton(
                                 onPressed: () {
                                   if (formKey.currentState.validate()) {
@@ -272,8 +265,7 @@ class _LoginPageState extends State<LoginPage> {
                                       otpTextfieldVisibility = true;
                                     });
                                     codeSent
-                                        ? Authservice().signInWithOTP(
-                                            smsCode, verificationId)
+                                        ? Authservice().signInWithOTP(smsCode, verificationId)
                                         : registerUser(phoneNo);
                                   }
                                 },
@@ -283,9 +275,7 @@ class _LoginPageState extends State<LoginPage> {
                                   child: Text(
                                     codeSent ? "Login" : "Verify",
                                     style: TextStyle(
-                                        color: white,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold),
+                                        color: white, fontSize: 16, fontWeight: FontWeight.bold),
                                   ),
                                 ),
                               ),
@@ -300,8 +290,7 @@ class _LoginPageState extends State<LoginPage> {
               codeSent
                   ? TextButton(
                       child: Text("Resend Code ?",
-                          style: TextStyle(color: white),
-                          textAlign: TextAlign.center),
+                          style: TextStyle(color: white), textAlign: TextAlign.center),
                       onPressed: () {
                         codeResent();
                         registerUser(phoneNo);
@@ -340,8 +329,7 @@ class _LoginPageState extends State<LoginPage> {
     final PhoneVerificationCompleted verified = (AuthCredential authResult) {
       Authservice().signIn(authResult);
     };
-    final PhoneVerificationFailed verificationfailed =
-        (FirebaseAuthException authException) {
+    final PhoneVerificationFailed verificationfailed = (FirebaseAuthException authException) {
       debugPrint('${authException.message}');
     };
     final PhoneCodeSent smsSent = (String verId, [int forceResendingToken]) {
